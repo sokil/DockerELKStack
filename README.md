@@ -8,7 +8,7 @@
 
 ## Troubleshooting
 
-If elasticsearch not started, try next:
+If elasticsearch not started, try next on host machine:
 
 ```
 sysctl -w vm.max_map_count=262144
