@@ -1,29 +1,40 @@
 version: '3'
 
-# Elastic images: https://www.docker.elastic.co/
-# Configuring elastic: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-prod-cluster-composefile
+# ELK images: https://www.docker.elastic.co/
 
 services:
   elasticsearch:
+    # Configuring docker: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
     image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
-    container_name: elasticsearch
+    container_name: elk_elasticsearch
     volumes:
       - esdata:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
 
   logstash:
-    # configuring: https://www.elastic.co/guide/en/logstash/current/configuration.html
+    # Configuring: https://www.elastic.co/guide/en/logstash/current/configuration.html
     image: docker.elastic.co/logstash/logstash:6.2.4
-    container_name: logstash
+    container_name: elk_logstash
 
   kibana:
     image: docker.elastic.co/kibana/kibana:6.2.4
-    container_name: kibana
+    container_name: elk_kibana
+    ports:
+      - 5601:5601
+    environment:
+      - discovery.type=single-node
 
   mysql:
     image: percona/percona-server:5.7
-    container_name: mysql
+    container_name: elk_mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
 
 volumes:
   esdata:
