@@ -17,6 +17,11 @@ services:
     # Configuring docker: https://www.elastic.co/guide/en/logstash/current/docker-config.html
     image: docker.elastic.co/logstash/logstash:6.2.4
     container_name: elk_logstash
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline/
+    environment: {}
+      # Config parameters: https://www.elastic.co/guide/en/logstash/current/logstash-settings-file.html
+      # Environment variable LOG_LEVEL converted to parameter log.level
 
   kibana:
     image: docker.elastic.co/kibana/kibana:6.2.4
@@ -36,6 +41,8 @@ services:
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
       MYSQL_USER: "${MYSQL_USER}"
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - "./mysql/init:/docker-entrypoint-initdb.d"
 
 volumes:
   esdata:
