@@ -5,6 +5,7 @@
 * [ELK Images](https://www.docker.elastic.co/)
 * [Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
 * [Logstash](https://www.elastic.co/guide/en/logstash/current/configuration.html)
+* [Logsatsh with Docker](https://www.elastic.co/guide/en/logstash/current/docker-config.html)
 
 ## Troubleshooting
 

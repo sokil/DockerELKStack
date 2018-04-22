@@ -14,6 +14,7 @@ services:
 
   logstash:
     # Configuring: https://www.elastic.co/guide/en/logstash/current/configuration.html
+    # Configuring docker: https://www.elastic.co/guide/en/logstash/current/docker-config.html
     image: docker.elastic.co/logstash/logstash:6.2.4
     container_name: elk_logstash
 
